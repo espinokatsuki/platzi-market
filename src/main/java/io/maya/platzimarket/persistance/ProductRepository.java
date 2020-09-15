@@ -5,6 +5,7 @@ import io.maya.platzimarket.domain.repository.ProductDomainRepository;
 import io.maya.platzimarket.persistance.crud.ProductCrudRepository;
 import io.maya.platzimarket.persistance.entity.Product;
 import io.maya.platzimarket.persistance.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.Optional;
 
 @Repository
 public class ProductRepository implements ProductDomainRepository {
+    @Autowired
     private ProductCrudRepository productCrudRepository;
+    @Autowired
     private ProductMapper productMapper;
 
     @Override
