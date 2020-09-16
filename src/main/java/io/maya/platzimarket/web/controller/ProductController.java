@@ -2,6 +2,10 @@ package io.maya.platzimarket.web.controller;
 
 import io.maya.platzimarket.domain.ProductDomain;
 import io.maya.platzimarket.domain.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +21,19 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
+    @ApiOperation("Get all super market products")
+    @ApiResponse(code = 200, message = "OK")
     public ResponseEntity<List<ProductDomain>> getAll() {
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/category/{id}")
-    public ResponseEntity<List<ProductDomain>> getByCategory(@PathVariable("id") Integer id) {
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "NOT FOUND")
+    })
+    public ResponseEntity<List<ProductDomain>> getByCategory(@ApiParam(value = "The id of the products",
+            required = true, example = "7") @PathVariable("id") Integer id) {
         return productService.getByCategory(id)
                 .map(productDomains -> new ResponseEntity<>(productDomains, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
