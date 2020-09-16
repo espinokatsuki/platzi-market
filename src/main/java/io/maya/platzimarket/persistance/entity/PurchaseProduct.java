@@ -18,6 +18,7 @@ public class PurchaseProduct {
     private Double total;
     private Boolean state;
     private @ManyToOne
+    @MapsId("idPurchase")
     @JoinColumn(name = "id_purchase", insertable = false, updatable = false)
     Purchase purchase;
     private @ManyToOne

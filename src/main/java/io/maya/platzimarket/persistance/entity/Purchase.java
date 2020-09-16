@@ -26,6 +26,6 @@ public class Purchase {
     private @ManyToOne
     @JoinColumn(name = "id_client", insertable = false, updatable = false)
     Client client;
-    private @OneToMany(mappedBy = "product")
+    private @OneToMany(mappedBy = "purchase", cascade = {CascadeType.ALL})
     List<PurchaseProduct> products;
 }
