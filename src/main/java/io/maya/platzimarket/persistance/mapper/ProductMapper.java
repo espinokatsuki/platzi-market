@@ -14,19 +14,19 @@ public interface ProductMapper {
     @Mappings({
             @Mapping(source = "id", target = "id"),
             @Mapping(source = "name", target = "name"),
+            @Mapping(source = "idCategory", target = "categoryId"),
             @Mapping(source = "price", target = "price"),
             @Mapping(source = "stock", target = "stock"),
-            @Mapping(source = "status", target = "active"),
-            @Mapping(source = "category", target = "category"),
-            @Mapping(source = "categoryId", target = "idCategory")
+            @Mapping(source = "state", target = "active"),
+            @Mapping(source = "category", target = "category")
     })
-    Product toProduct(ProductDomain productDomain);
+    ProductDomain toProductDomain(Product product);
 
-    List<Product> toProducts(List<ProductDomain> productDomains);
+    List<ProductDomain> toProductsDomain(List<Product> products);
 
     @InheritInverseConfiguration
     @Mapping(target = "barCode", ignore = true)
-    ProductDomain toProductDomain(Product product);
+    Product toProduct(ProductDomain productDomain);
 
-    List<ProductDomain> toProductsDomain(List<Product> product);
+    List<Product> toProducts(List<ProductDomain> productDomains);
 }
