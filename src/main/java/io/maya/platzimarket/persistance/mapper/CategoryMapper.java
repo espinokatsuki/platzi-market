@@ -14,9 +14,9 @@ public interface CategoryMapper {
             @Mapping(source = "description", target = "name"),
             @Mapping(source = "state", target = "active")
     })
-    Category toCategory(CategoryDomain categoryDomain);
+    CategoryDomain toCategoryDomain(Category category);
 
     @InheritInverseConfiguration
     @Mapping(target = "products", ignore = true)
-    CategoryDomain toCategoryDomain(Category category);
+    Category toCategory(CategoryDomain categoryDomain);
 }

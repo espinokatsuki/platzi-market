@@ -21,19 +21,19 @@ public class ProductRepository implements ProductDomainRepository {
     @Override
     public List<ProductDomain> getAll() {
         List<Product> productList = (List<Product>) productCrudRepository.findAll();
-        return productMapper.toProductsDomain(productList);
+        return productMapper.toProductDomains(productList);
     }
 
     @Override
     public Optional<List<ProductDomain>> getByCategory(Integer id) {
         List<Product> productList = productCrudRepository.findByIdCategoryOrderByNameAsc(id);
-        return Optional.of(productMapper.toProductsDomain(productList));
+        return Optional.of(productMapper.toProductDomains(productList));
     }
 
     @Override
     public Optional<List<ProductDomain>> getScarceProducts(Integer minStock) {
         Optional<List<Product>> productList = productCrudRepository.findByStockLessThanEqual(minStock);
-        return productList.map(products -> productMapper.toProductsDomain(products));
+        return productList.map(products -> productMapper.toProductDomains(products));
     }
 
     @Override

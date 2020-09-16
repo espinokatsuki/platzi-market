@@ -1,6 +1,5 @@
 package io.maya.platzimarket.domain;
 
-import io.maya.platzimarket.persistance.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +14,5 @@ public class ProductDomain {
     private int stock;
     private boolean active;
     private int categoryId;
-    private Category category;
+    private CategoryDomain categoryDomain;
 }
