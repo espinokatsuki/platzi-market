@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class PlatziUserDomainService implements UserDetailsService {
+public class PlatziUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return new User("platzi", "{noop}platzi", new ArrayList<>());
